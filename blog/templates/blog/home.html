@@ -1,0 +1,7 @@
+<h1>Home Page</h1>
+<ul>
+    {% for article in articles %}
+        <li><a href="{% url 'article_detail' article.pk %}">{{ article.title }}</a></li>
+    {% endfor %}
+    <a href="{% url 'dashboard' %}">Dashboard</a>
+</ul>
