@@ -1,7 +1,107 @@
-<h1>Dashboard</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            min-height: 100vh;
+            position: relative;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
+        ul {
+            list-style-type: none;
+            padding: 10px;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            color: #333;
+            text-decoration: none;
+        }
+        .login-container {
+            position: absolute;
+            top: 40px;
+            right: 10px;
+            z-index: 2; /* Ensure the login link is above the header */
+        }
+        .add {
+            position: absolute;
+            top: 10%;
+            left: 0;
+            background-color: #333;
+            padding: 12px;
+            z-index: 3;
+        }
+        .home {
+            position: absolute;
+            top: 28%;
+            left: 0;
+            background-color: #333;
+            padding: 12px;
+            z-index: 3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dashboard</h1>
+        <div class="home">
+            <a style="color: #fff;" href="{% url 'home' %}" >Home page</a> 
+        </div>
+    </header>
+    <ul>
+        {% for article in articles %}
+        <li>{{ article.title }} - <a href="{% url 'edit_article' article.pk %}">Edit</a> - <a href="{% url 'delete_article' article.pk %}">Delete</a></li>
+        {% endfor %}
+    </ul>
+    <div class="login-container">
+            {% if user.is_authenticated %}
+                <a style="color: #fff;" href="{% url 'user_status' %}">{{ user.username }}</a>
+            {% else %}
+                <a style="color: #fff;" href="{% url 'login' %}">Login</a>
+            {% endif %}
+    </div>
+    <div class="add">
+            <a style="color: #fff;" href="{% url 'add_article' %}">Add New Article</a>
+    </div>
+</body>
+</html>
+
+
+
+<!-- <h1>Dashboard</h1>
 <ul>
     {% for article in articles %}
         <li>{{ article.title }} - <a href="{% url 'edit_article' article.pk %}">Edit</a> - <a href="{% url 'delete_article' article.pk %}">Delete</a></li>
     {% endfor %}
 </ul>
 <a href="{% url 'add_article' %}">Add New Article</a>
+
+<style>
+    .right-align {
+        position: absolute;
+        right: 10;
+        top: 30px;
+    }
+    .container {
+        display: flex;
+        justify-content: flex-end;
+    }
+</style>
+<body>
+    <a href="{% url 'home' %}" class="right-align">Home</a>
+</body> -->

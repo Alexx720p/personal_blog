@@ -1,6 +1,18 @@
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        padding: 10px;
+        background-color: #f4f4f9;
+        min-height: 100vh;
+        position: relative;
+    }
+    
+</style>
+
 <h1>{{ form.instance.pk|yesno:"Edit Article,Add Article" }}</h1>
 <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
+{% csrf_token %}
+{{ form.as_p }}
+<button type="submit">Save</button>
 </form>

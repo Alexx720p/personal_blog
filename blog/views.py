@@ -12,10 +12,6 @@ def article_detail(request, pk):
     article = get_object_or_404(Article, pk=pk)
     return render(request, 'blog/article_detail.html', {'article': article})
 
-# def dashboard(request):
-#     articles = Article.objects.all()
-#     return render(request, 'blog/dashboard.html', {'articles': articles})
-# @login_required(login_url='/authentication/login/')
 def add_article(request):
     if request.method == 'POST':
         form = ArticleForm(request.POST)
@@ -26,7 +22,7 @@ def add_article(request):
         form = ArticleForm()
     return render(request, 'blog/add_article.html', {'form': form})
 
-# @login_required(login_url='/authentication/login/')
+@login_required
 def edit_article(request, pk):
     article = get_object_or_404(Article, pk=pk)
     if request.method == 'POST':
@@ -47,5 +43,3 @@ def delete_article(request, pk):
 def dashboard(request):
     articles = Article.objects.all()
     return render(request, 'blog/dashboard.html', {'articles': articles})
-
-

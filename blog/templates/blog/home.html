@@ -1,7 +1,166 @@
-<h1>Home Page</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            min-height: 100vh;
+            position: relative;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
+        ul {
+            list-style-type: none;
+            padding: 10px;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            color: #333;
+            text-decoration: none;
+        }
+        .login-container {
+            position: absolute;
+            top: 40px;
+            right: 10px;
+            z-index: 2; /* Ensure the login link is above the header */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Home Page</h1>
+        <h2>
+            <a style="color: #fff;" href="{% url 'dashboard' %}">Dashboard</a>
+        </h2>
+    </header>
+    <ul>
+        {% for article in articles %}
+            <li><a href="{% url 'article_detail' article.pk %}">{{ article.title }}</a></li>
+        {% endfor %}
+    </ul>
+    <div class="login-container">
+        {% if user.is_authenticated %}
+            <a style="color: #fff;" href="{% url 'user_status' %}">{{ user.username }}</a>
+        {% else %}
+            <a style="color: #fff;" href="{% url 'login' %}">Login</a>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            position: relative;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            padding: 10px;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            color: #333;
+            text-decoration: none;
+        }
+        .right-align {
+            position: absolute;
+            right: 30px;
+            top: 10px;
+        }
+        .container {
+            position: absolute;
+            display: flex;
+            /* justify-content: flex-end; */
+            top: 10px;
+            right: 10px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Home Page</h1>
+    </header>
+    <ul>
+        {% for article in articles %}
+            <li><a href="{% url 'article_detail' article.pk %}">{{ article.title }}</a></li>
+        {% endfor %}
+        <!-- <li><a href="#">Article 1</a></li>
+        <li><a href="#">Article 2</a></li>
+        <li><a href="#">Article 3</a></li> -->
+    <!-- </ul>
+    <div class="container">
+            {% if user.is_authenticated %}
+                <a href="{% url 'user_status' %}">{{ user.username }}</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %} 
+    </div>
+</body>
+</html> --> 
+
+
+
+<!-- <h1>Home Page</h1>
 <ul>
     {% for article in articles %}
         <li><a href="{% url 'article_detail' article.pk %}">{{ article.title }}</a></li>
     {% endfor %}
     <a href="{% url 'dashboard' %}">Dashboard</a>
 </ul>
+
+
+    <style>
+        .right-align {
+            position: absolute;
+            right: 30;
+            top: 10px; 
+        }
+        .container {
+            display: flex;
+            justify-content: flex-end;
+        }
+    </style>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <a href="{% url 'user_status' %}" class="right-align">{{ user.username }}</a>
+    {% else %}
+        <a href="{% url 'login' %}" class="right-align">Login</a>
+    {% endif %} 
+</body>
+</html> -->

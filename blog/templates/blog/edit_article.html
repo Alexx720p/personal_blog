@@ -8,41 +8,36 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
-        }
-        h1 {
-            color: #333;
-        }
-        form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        label {
-            display: block;
-            margin-top: 10px;
-        }
-        input[type="text"], textarea {
-            width: 100%;
             padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            background-color: #f4f4f9;
+            min-height: 100vh;
+            position: relative;
         }
-        input[type="submit"] {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 0;
+            text-align: center;
+            z-index: 1;
+            position: relative;
         }
-        input[type="submit"]:hover {
-            background-color: #45a049;
+        ul {
+            list-style-type: none;
+            padding: 10px;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            color: #333;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
-    <h1>Edit Article</h1>
+    <header>
+        <h1>Edit Article</h1>
+    </header>
     <form action="{% url 'edit_article' article.pk %}" method="post">
         {% csrf_token %}
         <label for="title">Title:</label>
